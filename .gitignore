@@ -3,3 +3,6 @@ port_scanner_node/node_modules
 
 # Builds
 port_scanner_node/dist
+
+# Practice files from course
+mooc_practice_files

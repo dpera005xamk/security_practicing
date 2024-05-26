@@ -3,11 +3,13 @@
 import * as net from 'net';
 
 async function isPortOpen(host: string, port: number): Promise<boolean> {
+  console.log('scanning: ', port, ' at ', host);
   return new Promise((resolve) => {
     const socket = new net.Socket();
     socket.setTimeout(1000); // 1 second timeout
 
     socket.on('connect', () => {
+      console.log('hit');
       socket.destroy();
       resolve(true);
     });
@@ -46,7 +48,14 @@ async function main() {
   }
 
   const ports = await getAccessiblePorts(address, parseInt(minPort), parseInt(maxPort));
-  ports.forEach(port => console.log(port));
+
+  if (ports.length < 1) {
+    console.log('no ports open in range ', minPort, '-', maxPort);
+  } else {
+    console.log('ports: ');
+    ports.forEach(port => console.log(port));
+  }
+
 }
 
 if (require.main === module) {
