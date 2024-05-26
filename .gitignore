@@ -1,0 +1,5 @@
+# Dependency directories
+port_scanner_node/node_modules
+
+# Builds
+port_scanner_node/dist
